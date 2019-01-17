@@ -4,6 +4,7 @@ for i in berlin paris rome prague; do
 done
 echo "MACHINE ARE CREATED."
 eval $(docker-machine env swarm-berlin)
+docker swarm init --advertise-addr $(docker-machine ip swarm-berlin)
 docker run -it -d -p 5000:8080 -v /var/run/docker.sock:/var/run/docker.sock dockersamples/visualizer
 TOKEN=$(docker swarm join-token -q manager)
 INIT_IP=$(docker-machine ip swarm-berlin)

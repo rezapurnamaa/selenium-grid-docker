@@ -25,7 +25,7 @@ services:
     image: selenium/node-chrome-debug
     entrypoint: >
       bash -c '
-        export IP_ADDRESS=$$(ip addr show eth0 | grep "inet\b" | awk '"'"'{print $$2}'"'"' | awk -F/ '"'"'{print $$1}'"'"' | head -1) &&
+        export IP_ADDRESS=$$HOSTNAME &&
         SE_OPTS="-host $$IP_ADDRESS" /opt/bin/entry_point.sh'
     volumes:
       - /dev/urandom:/dev/random
